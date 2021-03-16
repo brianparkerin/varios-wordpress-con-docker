@@ -1,0 +1,28 @@
+version: '3.9'
+
+services: 
+  db: 
+    image: mysql:5.migs/mysql-5.7
+    container_name: wordpress_db
+    restart: always
+    enviroment: 
+      MYSQL_ROOT_PASSWORD: "admin123"
+    ports: 
+      - 33070:3306
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      wordpress_net:
+        aliases:
+          - mysql_db
+
+volumes:
+  db:
+networks: 
+  worspress_net:
+    driver: bridge
+    ipam:
+      driver: default
+
+#Despues de esto ejecutamos en consola o terminal: docker-compose up -d 
+#para correr nuestra estancia
